@@ -27,7 +27,7 @@ cp .env.example .env
 
 ---
 
-## ⚙️ Uso
+## Uso
 
 1. Hay que tener PostgreSQL corriendo y una base de datos creada(el sql tiene el sql CODE).
 2. Configura el archivo `.env` con los datos reales.
@@ -43,7 +43,7 @@ npm run dev
 
 Este proyecto incluye una colección Postman lista para importar y probar los endpoints disponibles.
 
-### ▶ 1. Importar la colección
+### 1. Importar la colección
 
 1. Abre [Postman](https://www.postman.com/)
 2. Haz clic en **“Import”**
@@ -101,8 +101,3 @@ src/
 └── app.ts
 ```
 
----
-
-## 📄 Licencia
-
-MIT
