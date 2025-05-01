@@ -1,0 +1,193 @@
+{
+  "info": {
+    "name": "Historial Cl\u00ednico API",
+    "_postman_id": "e2d1234f-5678-9101-1121-314151617181",
+    "description": "Colecci\u00f3n Postman para probar la API del reto t\u00e9cnico de Historial Cl\u00ednico.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/auth/register",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "register"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"123456\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/auth/login",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"123456\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Crear historial cl\u00ednico",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/histories",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "histories"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"diagnosis\": \"Gripe com\\u00fan\",\n  \"treatment\": \"Reposo e hidrataci\\u00f3n\",\n  \"doctorNotes\": \"Paciente debe descansar al menos 3 d\\u00edas.\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Obtener todos los historiales",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/histories",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "histories"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Obtener historial por ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/histories/:id",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "histories",
+            ":id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Actualizar historial por ID",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/histories/:id",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "histories",
+            ":id"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"diagnosis\": \"Actualizado\",\n  \"treatment\": \"Medicamentos nuevos\",\n  \"doctorNotes\": \"Reevaluar en 5 d\\u00edas.\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Eliminar historial por ID",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/histories/:id",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "histories",
+            ":id"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import dotenv from 'dotenv';
 import { AppDataSource } from './config/data-source';
 import authRoutes from './routes/auth.routes';
-
+import clinicalHistoryRoutes from './routes/clinical-history.routes';
 
 dotenv.config();
 
@@ -12,7 +12,9 @@ app.use(express.json());
 
 app.get('/', (_req, res) => {res.send('API Historial Clínico funcionando 🚀');});
 
-app.use('/auth', authRoutes);
+app.use('/auth', authRoutes)
+app.use('/histories', clinicalHistoryRoutes);
+
 
 AppDataSource.initialize()
   .then(() => {

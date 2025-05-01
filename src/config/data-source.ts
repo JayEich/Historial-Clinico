@@ -1,8 +1,7 @@
 import { DataSource } from "typeorm";
 import { User } from "../entities/user.entity";
-//import { ClinicalHistory } from "../entities/clinical-history.entity";
+import { ClinicalHistory } from "../entities/clinical-history.entity";
 import dotenv from "dotenv";
-import { parse } from "path";
 
 dotenv.config();
 
@@ -15,10 +14,9 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    synchronize: true, // Esto no se usa pa produccion
+    synchronize: true,
     logging: false,
-    entities: [User],
-    //entities: [User, ClinicalHistory],
+    entities: [User, ClinicalHistory],
     migrations: [],
     subscribers: [],
 })

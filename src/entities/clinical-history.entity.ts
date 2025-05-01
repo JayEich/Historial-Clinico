@@ -2,33 +2,33 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
+    ManyToOne,
     CreateDateColumn,
     UpdateDateColumn,
   } from 'typeorm';
+  import { User } from './user.entity';
   
-  import { OneToMany } from 'typeorm';
-  import { ClinicalHistory } from './clinical-history.entity';
-  
-
   @Entity()
-  export class User {
+  export class ClinicalHistory {
     @PrimaryGeneratedColumn('uuid')
     id: string;
   
-    @Column({ unique: true })
-    email: string;
+    @Column()
+    diagnosis: string;
   
     @Column()
-    password: string;
+    treatment: string;
   
-    @OneToMany(() => ClinicalHistory, (history) => history.patient)
-    histories: ClinicalHistory[];
-
+    @Column()
+    doctorNotes: string;
+  
+    @ManyToOne(() => User, (user) => user.histories, { onDelete: 'CASCADE' })
+    patient: User;
+  
     @CreateDateColumn()
     createdAt: Date;
   
     @UpdateDateColumn()
     updatedAt: Date;
-   
   }
   
