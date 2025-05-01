@@ -12,8 +12,11 @@ import {
   export class ClinicalHistory {
     @PrimaryGeneratedColumn('uuid')
     id: string;
-  
+
     @Column()
+    symptoms: string;
+
+    @Column({ nullable: true })
     diagnosis: string;
   
     @Column()

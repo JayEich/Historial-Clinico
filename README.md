@@ -12,7 +12,8 @@ Este proyecto es un microservicio RESTful para la gestión de historiales clíni
 - TypeORM
 - JWT para autenticación
 - Class-validator para validaciones
-- Bcrypt para hashing de contraseñas
+- Bcryptjs para hashing de contraseñas
+- Axios para la api externa de OpenAI
 
 ---
 
@@ -34,8 +35,28 @@ cp .env.example .env
 3. Corre el servidor:
 
 ```bash
-npm run dev
+npm run dev 
 ```
+## Ejecución con la Ballienita Azul (Docker)
+Asegúrate de tener Docker Desktop instalado y corriendo (abrirlo)
+
+En la raíz del proyecto, ejecuta:
+```bash
+docker-compose up --build
+```
+
+La API estará disponible en:
+http://localhost:3000
+
+Esto levanta:
+
+- Un contenedor para la base de datos PostgreSQL (db)
+
+- Un contenedor para el backend (app)
+
+Sin necesidad de configurar .env, todo viene desde docker-compose.yml
+
+Puedes probar los endpoints con la colección Postman incluida(mira mas abajo).
 
 ---
 
@@ -47,13 +68,13 @@ Este proyecto incluye una colección Postman lista para importar y probar los en
 
 1. Abre [Postman](https://www.postman.com/)
 2. Haz clic en **“Import”**
-3. Selecciona el archivo `Historial_Clinico_Postman_Collection.json` incluido en este repositorio
+3. Selecciona el archivo `/postman/Collection.json` incluido en este repositorio
 4. Se importará como **“Historial Clínico API”**
 
 ---
 
 ###  2. Flujo de uso
-
+r
 #### 2.1 Registrar un nuevo usuario
 
 - `POST /auth/register`
@@ -84,7 +105,28 @@ Este proyecto incluye una colección Postman lista para importar y probar los en
 ###  3 Probar endpoints protegidos
 
 En cada endpoint se le debe dar el valor del token a la variable creada en los headers
-Y en cada endpoint que solicite un id "/:id" se debe hacer el cambio por el uuid real del historial
+Y en cada endpoint que solicite un id "/{{historyId}}" se debe ingresar el uuid real del historial
  
+---
+# Sistema de sugerencia de Diagnostico
+IMPORTANTE
+Este proyecto incluye un endpoint adicional que permite generar una **sugerencia de diagnóstico médico** basada en los síntomas del historial clínico del paciente.
 
+Si se configura una clave de API de OpenAI en el archivo `.env`, el sistema utilizará la IA real para generar la sugerencia:
 
+```
+OPENAI_API_KEY=tu_clave_api
+```
+
+Ejemplo de respuesta generada por OpenAI:
+
+```json
+{
+  "symptoms": "fiebre, escalofríos y dolor de garganta",
+  "suggestedDiagnosis": "Podría tratarse de una faringitis viral o una infección de las vías respiratorias superiores.",
+  "source": "openai"
+}
+```
+
+> Si la clave no está presente o hay un error con OpenAI, se usará automáticamente el modo simulado como respaldo.
+No logre probarla por el tema de la key no obstante deje el codigo bajo el que se supone deberia de funcionar con openAI

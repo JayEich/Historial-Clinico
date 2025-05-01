@@ -6,6 +6,9 @@ export class CreateHistoryDto {
   diagnosis: string;
 
   @IsString()
+  symptoms: string;
+
+  @IsString()
   treatment: string;
 
   @IsString()

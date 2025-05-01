@@ -2,7 +2,7 @@ import { AppDataSource } from '../config/data-source';
 import { User } from '../entities/user.entity';
 import { CreateUserDto } from '../dto/user.dto';
 import { validate } from 'class-validator';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 

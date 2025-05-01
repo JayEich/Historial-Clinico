@@ -1,8 +1,8 @@
 {
   "info": {
     "name": "Historial Cl\u00ednico API",
-    "_postman_id": "e2d1234f-5678-9101-1121-314151617181",
-    "description": "Colecci\u00f3n Postman para probar la API del reto t\u00e9cnico de Historial Cl\u00ednico.",
+    "_postman_id": "historial-clinico-api",
+    "description": "Colecci\u00f3n Postman para proyecto historial clinico.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -86,12 +86,12 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"diagnosis\": \"Gripe com\\u00fan\",\n  \"treatment\": \"Reposo e hidrataci\\u00f3n\",\n  \"doctorNotes\": \"Paciente debe descansar al menos 3 d\\u00edas.\"\n}"
+          "raw": "{\n  \"diagnosis\": \"En observaci\\u00f3n\",\n  \"treatment\": \"Hidrataci\\u00f3n y reposo\",\n  \"doctorNotes\": \"Volver en 3 d\\u00edas si no mejora.\",\n  \"symptoms\": \"fiebre, tos, cansancio\"\n}"
         }
       }
     },
     {
-      "name": "Obtener todos los historiales",
+      "name": "Listar historiales cl\u00ednicos",
       "request": {
         "method": "GET",
         "header": [
@@ -123,20 +123,20 @@
           }
         ],
         "url": {
-          "raw": "http://localhost:3000/histories/:id",
+          "raw": "http://localhost:3000/histories/{{historyId}}",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
             "histories",
-            ":id"
+            "{{historyId}}"
           ]
         }
       }
     },
     {
-      "name": "Actualizar historial por ID",
+      "name": "Actualizar historial cl\u00ednico",
       "request": {
         "method": "PUT",
         "header": [
@@ -150,24 +150,24 @@
           }
         ],
         "url": {
-          "raw": "http://localhost:3000/histories/:id",
+          "raw": "http://localhost:3000/histories/{{historyId}}",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
             "histories",
-            ":id"
+            "{{historyId}}"
           ]
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"diagnosis\": \"Actualizado\",\n  \"treatment\": \"Medicamentos nuevos\",\n  \"doctorNotes\": \"Reevaluar en 5 d\\u00edas.\"\n}"
+          "raw": "{\n  \"diagnosis\": \"Faringitis aguda\",\n  \"treatment\": \"Antibi\\u00f3ticos y descanso\",\n  \"doctorNotes\": \"Control en 5 d\\u00edas.\",\n  \"symptoms\": \"dolor de garganta, fiebre alta\"\n}"
         }
       }
     },
     {
-      "name": "Eliminar historial por ID",
+      "name": "Eliminar historial cl\u00ednico",
       "request": {
         "method": "DELETE",
         "header": [
@@ -177,17 +177,51 @@
           }
         ],
         "url": {
-          "raw": "http://localhost:3000/histories/:id",
+          "raw": "http://localhost:3000/histories/{{historyId}}",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
             "histories",
-            ":id"
+            "{{historyId}}"
           ]
         }
       }
+    },
+    {
+      "name": "Sugerencia de diagn\u00f3stico (simulado)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/histories/{{historyId}}/suggest-diagnosis",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "histories",
+            "{{historyId}}",
+            "suggest-diagnosis"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "historyId",
+      "value": ""
     }
   ]
 }
