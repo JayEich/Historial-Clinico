@@ -108,6 +108,15 @@ En cada endpoint se le debe dar el valor del token a la variable creada en los h
 Y en cada endpoint que solicite un id "/{{historyId}}" se debe ingresar el uuid real del historial
  
 ---
+## Prueba con jest
+
+Este proyecto incluye una prueba de registro con jest, se puede hacer ejecutando el proyecto con docker o en local y luego:
+
+```bash
+npm test
+```
+
+---
 # Sistema de sugerencia de Diagnostico
 IMPORTANTE
 Este proyecto incluye un endpoint adicional que permite generar una **sugerencia de diagnóstico médico** basada en los síntomas del historial clínico del paciente.
