@@ -14,6 +14,7 @@ Este proyecto es un microservicio RESTful para la gestión de historiales clíni
 - Class-validator para validaciones
 - Bcryptjs para hashing de contraseñas
 - Axios para la api externa de OpenAI
+- jest para la prueba automatizada
 
 ---
 
