@@ -88,16 +88,3 @@ Y en cada endpoint que solicite un id "/:id" se debe hacer el cambio por el uuid
  
 
 
-## 📁 Estructura del proyecto
-
-```
-src/
-├── controllers/
-├── routes/
-├── entities/
-├── config/
-├── dto/
-├── middlewares/
-└── app.ts
-```
-
