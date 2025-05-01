@@ -10,21 +10,26 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.get('/', (_req, res) => {res.send('API Historial Clínico funcionando...');});
+app.get('/', (_req, res) => {
+  res.send('API Historial Clínico funcionando...');//debugeo
+});
 
-app.use('/auth', authRoutes)
+app.use('/auth', authRoutes);
 app.use('/histories', clinicalHistoryRoutes);
 
-
-AppDataSource.initialize()
-  .then(() => {
-    console.log('-->Base de datos conectada');
-
-    const PORT = process.env.PORT || 3000;
+// Por si no esta en modo test
+if (process.env.NODE_ENV !== 'test') {
+  AppDataSource.initialize()
+    .then(() => {
+      console.log('--> Base de datos conectada');
+      const PORT = process.env.PORT || 3000;
       app.listen(PORT, () => {
-      console.log(`-->Servidor escuchando en http://localhost:${PORT}`);//DEBUG
+        console.log(`--> Servidor escuchando en http://localhost:${PORT}`);
+      });
+    })
+    .catch((error) => {
+      console.error('Error al conectar la base de datos', error);
     });
-  })
-  .catch((error) => {
-    console.error('Error al conectar la base de datos', error);//DEBUG
-  });
+}
+
+export default app;
